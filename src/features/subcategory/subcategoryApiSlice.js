@@ -13,11 +13,15 @@ export const subcategoryApiSlice = apiSlice.injectEndpoints({
         body: { ...catId },
       }),
       providesTags: ["Subcategory"],
-      transformResponse: (responseData) => {
-        const newResponse = responseData?.map((ele) => {
-          return { id: ele._id, ...ele };
-        });
-        return subcategoryAdaptor.setAll(initialState, newResponse);
+      transformResponse: (responseData = []) => {
+        if (responseData?.length > 0) {
+          const newResponse = responseData?.map((ele) => {
+            return { id: ele._id, ...ele };
+          });
+          return subcategoryAdaptor.setAll(initialState, newResponse);
+        } else {
+          return responseData;
+        }
       },
     }),
     getAroundProblem: builder.mutation({

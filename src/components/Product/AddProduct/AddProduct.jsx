@@ -536,7 +536,7 @@ export default function AddProduct() {
                           size="medium"
                         >
                           {isLoading ? (
-                            <CircularProgress color="secondary" />
+                            <CircularProgress color="primary" />
                           ) : (
                             "Add Product"
                           )}

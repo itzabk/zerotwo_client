@@ -62,7 +62,6 @@ const BrandProductDistribution = () => {
     isLoading,
     isError,
   } = useGetBPDQuery();
-  console.log(distribution_data);
   const labels = distribution_data?.map((ele) => ele._id[0]);
   const dataset = distribution_data?.map((ele) => ele?.ptotal);
   //config barchart

@@ -52,8 +52,8 @@ export default function ShopProductCard({ product }) {
   const [deleteWish, { isLoading: isDelWishLoading }] = useDeleteWishMutation();
   //role
   const role = localStorage.getItem("userId");
-  const [boolCart, setboolCart] = useState(localStorage.getItem("bc") || true);
-  const [boolWish, setboolWish] = useState(localStorage.getItem("bw") || true);
+  const [boolCart, setboolCart] = useState(true);
+  const [boolWish, setboolWish] = useState(true);
   //handle add to wishlist
   const handleAddtoWishlist = async () => {
     try {
@@ -73,7 +73,6 @@ export default function ShopProductCard({ product }) {
           },
         });
         setboolWish(false);
-        localStorage.setItem("bw", false);
       }
     } catch (error) {
       console.log(error?.data?.message);
@@ -103,7 +102,6 @@ export default function ShopProductCard({ product }) {
           },
         });
         setboolWish(true);
-        localStorage.setItem("bw", true);
       }
     } catch (error) {
       console.log(error?.data?.message);
@@ -132,8 +130,8 @@ export default function ShopProductCard({ product }) {
             popup: "animate__animated animate__fadeOutUp",
           },
         });
+
         setboolCart(false);
-        localStorage.setItem("bc", false);
       }
     } catch (error) {
       console.log(error?.data?.message);
@@ -160,7 +158,6 @@ export default function ShopProductCard({ product }) {
           },
         });
         setboolCart(true);
-        localStorage.setItem("bc", true);
       }
     } catch (error) {
       console.log(error?.data?.message);
@@ -220,49 +217,47 @@ export default function ShopProductCard({ product }) {
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
             {boolCart ? (
-              <Tooltip title="Add to Cart">
-                {" "}
-                <IconButton onClick={handleAddtoCart}>
-                  {isLoading ? (
-                    <CircularProgress color="secondary" />
-                  ) : (
+              <IconButton onClick={handleAddtoCart}>
+                {isLoading ? (
+                  <CircularProgress color="secondary" />
+                ) : (
+                  <Tooltip title="Add to Cart">
                     <ShoppingCartIcon />
-                  )}
-                </IconButton>{" "}
-              </Tooltip>
+                  </Tooltip>
+                )}
+              </IconButton>
             ) : (
-              <Tooltip title="Remove from Cart">
-                <IconButton onClick={handleDeletefromCart}>
-                  {isCartDelLoading ? (
-                    <CircularProgress color="secondary" />
-                  ) : (
+              <IconButton onClick={handleDeletefromCart}>
+                {isCartDelLoading ? (
+                  <CircularProgress color="secondary" />
+                ) : (
+                  <Tooltip title="Remove from Cart">
                     <DeleteIcon sx={{ color: "red" }} />
-                  )}
-                </IconButton>
-              </Tooltip>
+                  </Tooltip>
+                )}
+              </IconButton>
             )}
             {boolWish ? (
-              <Tooltip title="Add to Wishlist">
+              <IconButton onClick={handleAddtoWishlist}>
                 {" "}
-                <IconButton onClick={handleAddtoWishlist}>
-                  {" "}
-                  {isWishLoading ? (
-                    <CircularProgress color="secondary" />
-                  ) : (
+                {isWishLoading ? (
+                  <CircularProgress color="secondary" />
+                ) : (
+                  <Tooltip title="Add to Wishlist">
                     <StarsIcon />
-                  )}
-                </IconButton>{" "}
-              </Tooltip>
+                  </Tooltip>
+                )}
+              </IconButton>
             ) : (
-              <Tooltip title="Delete from Wishlist">
-                <IconButton onClick={handleDeletefromWishlist}>
-                  {isDelWishLoading ? (
-                    <CircularProgress color="secondary" />
-                  ) : (
+              <IconButton onClick={handleDeletefromWishlist}>
+                {isDelWishLoading ? (
+                  <CircularProgress color="secondary" />
+                ) : (
+                  <Tooltip title="Delete from Wishlist">
                     <HighlightOffIcon sx={{ color: "red" }} />
-                  )}
-                </IconButton>
-              </Tooltip>
+                  </Tooltip>
+                )}
+              </IconButton>
             )}
           </CardActions>
         )}

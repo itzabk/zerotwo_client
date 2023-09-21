@@ -50,7 +50,7 @@ export default function ShopFilterSidebar({
   const [query, setQuery] = useState({
     cat: "",
     brand: "",
-    sort: "newest",
+    sort: "",
   });
 
   const [getProducts, { data: products, isLoading, isError, isSuccess }] =
@@ -179,7 +179,7 @@ export default function ShopFilterSidebar({
                 startIcon={<Iconify icon="ic:round-clear-all" />}
                 onClick={(e) => {
                   setQuery((prev) => {
-                    return { ...prev, cat: "", brand: "", sort: "newest" };
+                    return { ...prev, cat: "", brand: "", sort: "git branch -M main" };
                   });
                   getProducts();
                 }}

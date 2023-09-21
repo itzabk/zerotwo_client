@@ -14,11 +14,15 @@ export const wishlistApiSlice = apiSlice.injectEndpoints({
       validateStatus: (response, result) => {
         return response.status === 200 && !result.isError;
       },
-      transformResponse: (responseData) => {
-        const newData = responseData?.map((ele, i) => {
-          return { id: ele._id, ...ele };
-        });
-        return wishlistAdapter.setAll(initialState, newData);
+      transformResponse: (responseData = []) => {
+        if (responseData?.length > 0) {
+          const newData = responseData?.map((ele, i) => {
+            return { id: ele._id, ...ele };
+          });
+          return wishlistAdapter.setAll(initialState, newData);
+        } else {
+          return responseData;
+        }
       },
       providesTags: ["Wishlist"],
     }),

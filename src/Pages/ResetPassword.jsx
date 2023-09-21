@@ -28,7 +28,7 @@ const ResetPassword = () => {
   const [searchParams, setSearhParams] = useSearchParams();
   const parsedEmail = decodeURIComponent(searchParams.get("value"));
   const initialValues = {
-    email: parsedEmail || "",
+    email: parsedEmail === "null" ? "" : parsedEmail,
   };
   const [resetPassword, { isLoading }] = useResetPasswordMutation();
 

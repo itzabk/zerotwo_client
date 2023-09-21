@@ -31,7 +31,7 @@ const CartPage = () => {
     <>
       {isLoading && <BouncingDotsLoader />}
       <Container>
-        {isSuccess && cart?.ids?.length > 0 && (
+        {isSuccess && cart?.ids?.length > 0 ? (
           <Container>
             <Grid container>
               <Grid item xs={12} sm={12} md={8} lg={8}>
@@ -80,6 +80,17 @@ const CartPage = () => {
               </Grid>
             </Grid>
           </Container>
+        ) : (
+          <div
+            style={{
+              backgroundImage: "url(/emptycart.png)",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "contain",
+              backgroundPosition: "center",
+              width: "inherit",
+              height: "100vh",
+            }}
+          ></div>
         )}
         {isError && (
           <div

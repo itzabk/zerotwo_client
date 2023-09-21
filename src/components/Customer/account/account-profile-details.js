@@ -266,22 +266,24 @@ export const AccountProfileDetails = () => {
                                     </Typography>
                                   </Box>
                                 </Grid>
-                                <Grid xs={12} md={6}>
-                                  <Box>
-                                    <FormLabel htmlFor="gender">
-                                      Address
-                                    </FormLabel>
-                                    <Typography
-                                      variant="h6"
-                                      id="gender"
-                                      color="darkblack"
-                                    >
-                                      {Object.values(user_account.address).join(
-                                        ","
-                                      )}
-                                    </Typography>
-                                  </Box>
-                                </Grid>
+                                {user_account?.address && (
+                                  <Grid xs={12} md={6}>
+                                    <Box>
+                                      <FormLabel htmlFor="gender">
+                                        Address
+                                      </FormLabel>
+                                      <Typography
+                                        variant="h6"
+                                        id="gender"
+                                        color="darkblack"
+                                      >
+                                        {Object.values(
+                                          user_account?.address
+                                        ).join(",")}
+                                      </Typography>
+                                    </Box>
+                                  </Grid>
+                                )}
 
                                 <Grid xs={12} md={6}>
                                   <FormikControl

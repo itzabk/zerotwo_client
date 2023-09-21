@@ -31,7 +31,7 @@ const HomepageLayout = () => {
 
   const customerSettings = [
     { name: "Profile", link: `/accounts/${_id}` },
-    { name: "Wishlist", link: `/accounts/${_id}/wishlist/` },
+    { name: "Wishlist", link: `/accounts/wishlist/${_id}` },
     { name: "My Orders", link: `/accounts/orders/${_id}` },
     {
       name: "Logout",

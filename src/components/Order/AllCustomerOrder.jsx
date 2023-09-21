@@ -19,7 +19,6 @@ const AllCustomerOrder = () => {
     isError,
   } = useGetOrderQuery(userId);
   //Configure Data Grid
-  console.log(orders);
   const columns = [
     {
       field: "_id",

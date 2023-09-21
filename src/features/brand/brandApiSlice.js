@@ -14,11 +14,15 @@ export const brandApiSlice = apiSlice.injectEndpoints({
       validateStatus: (response, result) => {
         return response.status === 200 && !result.isError;
       },
-      transformResponse: (responseData) => {
-        const newData = responseData?.map((ele, i) => {
-          return { id: ele._id, ...ele };
-        });
-        return brandsAdapter.setAll(initialState, newData);
+      transformResponse: (responseData = []) => {
+        if (responseData?.length > 0) {
+          const newData = responseData?.map((ele, i) => {
+            return { id: ele._id, ...ele };
+          });
+          return brandsAdapter.setAll(initialState, newData);
+        } else {
+          return responseData;
+        }
       },
       providesTags: ["Brands"],
     }),

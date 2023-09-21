@@ -9,11 +9,15 @@ export const categoryApiSlice = apiSlice.injectEndpoints({
     getCategories: builder.query({
       query: () => "/categories/",
       providesTags: ["Category"],
-      transformResponse: (responseData) => {
-        const newResponse = responseData?.map((ele) => {
-          return { id: ele._id, ...ele };
-        });
-        return categoryAdaptor.setAll(initialState, newResponse);
+      transformResponse: (responseData = []) => {
+        if (responseData?.length > 0) {
+          const newResponse = responseData?.map((ele) => {
+            return { id: ele._id, ...ele };
+          });
+          return categoryAdaptor.setAll(initialState, newResponse);
+        } else {
+          return responseData;
+        }
       },
     }),
     addCategory: builder.mutation({

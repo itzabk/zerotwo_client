@@ -11,7 +11,6 @@ const AllOrderList = () => {
   //Get Brands
   const { data: orders, isLoading, isSuccess, isError } = useGetOrdersQuery();
   //Configure Data Grid
-  console.log(orders);
   const columns = [
     {
       field: "_id",
